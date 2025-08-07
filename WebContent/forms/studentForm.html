@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for Internship</title>
+  <link rel="stylesheet" href="/InternshipPortal/css/style.css" />
+</head>
+<body>
+	<a href="../index.html" class="back-btn-student">← Back</a>
+
+<style>
+  .back-btn-student {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #e0e7ff; /* Soft blue */
+    color: #4f46e5; /* Indigo */
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .back-btn-student:hover {
+    background-color: #c7d2fe; /* Lighter blue on hover */
+    transform: translateY(-2px);
+  }
+
+  .back-btn-student:active {
+    background-color: #a5b4fc; /* Click effect */
+    transform: translateY(0);
+  }
+</style>
+	
+  <div class="container">
+    <header>
+      <h1>Internship Portal</h1>
+    </header>
+
+    <div class="form-card">
+      <h2>Apply for Internship</h2>
+      <p>Fill out the form below to submit your internship application</p>
+
+      <!-- ✅ Use enctype to allow file upload -->
+      <form action="/InternshipPortal/ApplicationServlet" method="post" enctype="multipart/form-data">
+      
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+        <label for="college">College/University *</label>
+        <input type="text" id="college" name="college" placeholder="Enter your college/university name" required />
+
+        <label for="department">Department *</label>
+        <input type="text" id="department" name="department" placeholder="e.g., Computer Science, Mechanical Engineering" required />
+
+        <label for="cgpa">CGPA (0.0 - 10.0) *</label>
+        <input type="number" id="cgpa" name="cgpa" step="0.01" placeholder="Enter your CGPA" required />
+
+        <label for="role">Desired Role *</label>
+        <select id="role" name="role" required>
+          <option value="">Select a role</option>
+          <option value="Developer">Developer</option>
+          <option value="Designer">Designer</option>
+          <option value="Tester">Tester</option>
+          <option value="Analyst">Analyst</option>
+        </select>
+
+        <!-- ✅ Add resume upload input here -->
+        <label for="resume">Upload Resume (PDF/DOC) *</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required />
+
+        <button type="submit">🚀 Submit Application</button>
+      </form>
+    </div>
+  </div>
+  <script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const fileInput = document.getElementById("resume");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Please upload your resume.");
+      e.preventDefault();
+      return;
+    }
+
+    // ✅ Allowed file types
+    const allowedTypes = ["application/pdf", 
+                          "application/msword", 
+                          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Invalid file type. Please upload a PDF or Word document.");
+      e.preventDefault();
+      return;
+    }
+
+    // ✅ Size check (5MB max)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      alert("File is too large. Maximum allowed size is 5MB.");
+      e.preventDefault();
+    }
+  });
+</script>
+</body>
+</html>
