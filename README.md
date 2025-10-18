@@ -29,7 +29,7 @@ A **Java-based Web Application** that allows students to apply for internships a
 
 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/InternshipApplicationPortal.git
+git clone https://github.com/Anagha-KA/InternshipApplicationPortal.git
 cd InternshipApplicationPortal
 ```
 2️⃣ Setup Database
