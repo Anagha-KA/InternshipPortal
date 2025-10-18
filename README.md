@@ -1,88 +1,90 @@
-📌 Internship Application Portal
-An end-to-end Internship Application Management System built using Java (Servlets), HTML/CSS, and MySQL. This web-based system allows students to apply for internships and enables administrators to manage and filter applications through a secure admin panel.
-🚀 Features
-📝 Student Application Form with resume upload
-🔒 Admin Login System with session handling
-📊 Admin Dashboard to:
-View submitted applications
-Filter by CGPA and Role
-Download all data as a CSV file
-📂 Resume files are stored on the server
-📅 Tracks application submission date
-✅ Input validation for cleaner data and protection against SQL injection
-🎨 Fully responsive and styled with custom CSS
-💻 Tech Stack
-Layer	Technology
-Frontend	HTML, CSS
-Backend	Java Servlets
-Database	MySQL
-Server	Apache Tomcat
-Tools Used	Eclipse/VS Code, Git, GitHub
-📁 Folder Structure
-InternshipApplicationPortal/
-│
-├── backend/
-│   ├── ApplicationServlet.java
-│   ├── AdminLoginServlet.java
-│   ├── ViewApplicationsServlet.java
-│   ├── DownloadCSVServlet.java
-│   └── DBConnection.java
-│
-├── forms/
-│   ├── login.html
-│   ├── studentForm.html
-│   ├── viewApplications.jsp
-│   ├── success.html
-│   └── error.html
-│
-├── uploads/            # Uploaded resumes
-├── css/                # Stylesheets
-│   └── style.css
-├── WEB-INF/
-│   └── web.xml
-└── README.md
-🧪 How to Run Locally
-Clone the repository
-git clone https://github.com/your-username/InternshipApplicationPortal.git
+🎓 Internship Application Portal
+A Java-based Web Application that allows students to apply for internships and enables the admin to manage all applications efficiently.
+
+🚀 Features:
+📝 Student Application Form — Submit internship applications with details (Name, College, Department, CGPA, Role, Resume Upload, etc.)
+🔐 Admin Login — Secure access for admin to view all applications.
+📊 Dashboard View — Admin can view, filter, and manage student applications.
+🔍 Filter by CGPA & Role — Quickly search for candidates meeting criteria.
+⬇️ Download to CSV — Export all applications for record-keeping.
+🚪 Logout Functionality — Secure session handling.
+
+🧩 Tech Stack:
+Frontend: HTML, CSS, JavaScript
+Backend: Java Servlets, JSP
+Database: MySQL
+Server: Apache Tomcat 9.0
+Build Tool: Maven (optional if used)
+
+⚙️ Installation & Setup:
+1️⃣ Clone the Repository
+git clone https://github.com/<your-username>/InternshipApplicationPortal.git
 cd InternshipApplicationPortal
-Import into Eclipse/IDE
-Open Eclipse → File → Import → Existing Projects
-Select this folder.
-Configure Database
-Create a database in MySQL:
+
+2️⃣ Setup Database
+Open MySQL Workbench and run:
+
 CREATE DATABASE internship_portal;
-Create the applications table:
+
+USE internship_portal;
 
 CREATE TABLE applications (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100),
   college VARCHAR(100),
   department VARCHAR(100),
-  cgpa DOUBLE,
-  role VARCHAR(50),
-  resume_path VARCHAR(255),
-  applied_on DATETIME
+  cgpa DECIMAL(3,2),
+  role VARCHAR(100),
+  fileName VARCHAR(255)
 );
-Update DB credentials in DBConnection.java.
-Deploy to Tomcat
-Build a .war file or run on a local server via Eclipse.
-Access the App
-Visit: http://localhost:8080/InternshipApplicationPortal/forms/studentForm.html
-🔐 Admin Credentials
 
+3️⃣ Configure Database Connection
+Open:
+src/main/java/com/portal/DBConnection.java
+
+Update your database credentials:
+
+String url = "jdbc:mysql://localhost:3306/internship_portal";
+String user = "root";
+String password = "your_password";
+
+4️⃣ Deploy on Tomcat
+Open Eclipse → Right-click the project → Run As → Run on Server
+Select Apache Tomcat 9.0
+
+Visit:
+http://localhost:8080/InternshipPortal/
+
+👨‍💼 Admin Credentials
 Username: admin
 Password: admin123
 
-(Can be configured in AdminLoginServlet.java)
+📁 Project Structure
+InternshipPortal/
+├── src/
+│   └── main/java/com/portal/
+│       ├── ApplicationServlet.java
+│       ├── AdminLogin.java
+│       ├── ViewApplicationsServlet.java
+│       ├── LogoutServlet.java
+│       ├── DownloadCSV.java
+│       └── DBConnection.java
+│
+├── WebContent/
+│   ├── forms/
+│   ├── css/
+│   ├── images/
+│   └── success.html, error.html, etc.
+│
+├── web.xml
+├── README.md
+└── Dockerfile (if used)
 
-📌 Future Improvements
+🧠 Future Enhancements:
+✉️ Email notifications after successful application submission
+👥 Role-based admin access
+📄 Resume preview and verification system
+☁️ Cloud database integration
 
-Email notifications on successful applications
-
-File type validation for resume uploads
-
-Admin role management (multi-level access)
-
-Deploy online via Render or Railway
-
-GitHub
+💬 Author
+👩‍💻 Anagha K A
